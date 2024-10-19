@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="EjTeoriaGen.Infraestructure"
+		                   namespace="EjTeoriaGen.Infraestructure.EN.Dsm_teoría">
+		    
+		    
+			
+				<class name="ReservaNH" table="Reserva"> 
+				  	
+						<id name="Id" column="idReserva" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Inicio" type="date"> 
+						<column name="inicio"  not-null="true"/>
+					</property>
+					<property name="Final" type="date"> 
+						<column name="final"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Cliente" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.ClienteNH" >	
+								<column name="FK_DNICliente_idCliente"/> 
+						</many-to-one>
+											 					
+			
+		  			
+					
+							<many-to-one name="Coche" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.CocheNH" >
+								<column name="FK_num_licenciaCoche_idCoche"/> 
+        					</many-to-one>
+					 
+						
+			
+		  			
+					
+							<many-to-one name="Linea_factura" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.Linea_facturaNH" >
+								<column name="FK_num_lineaLinea_factura_idLinea_factura"/> 
+        					</many-to-one>
+					 
+						
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ReservaNHReadAllHQL">from ReservaNH</query>
+		</hibernate-mapping>
+	

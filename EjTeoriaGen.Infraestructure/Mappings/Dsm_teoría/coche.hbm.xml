@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="EjTeoriaGen.Infraestructure"
+		                   namespace="EjTeoriaGen.Infraestructure.EN.Dsm_teoría">
+		    
+		    
+			
+				<class name="CocheNH" table="Coche"> 
+				  	
+						<id name="Num_licencia" column="num_licenciaCoche" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Categoria_coche" > 
+						<column name="categoria_coche"  not-null="true"/>
+					</property>
+					<property name="Estado_coche" > 
+						<column name="estado_coche"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+					
+							   <one-to-one name="Reserva" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.ReservaNH" property-ref="Coche" />							
+					 
+						
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="CocheNHReadAllHQL">from CocheNH</query>
+		</hibernate-mapping>
+	

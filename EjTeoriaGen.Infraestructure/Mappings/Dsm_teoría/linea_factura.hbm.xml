@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="EjTeoriaGen.Infraestructure"
+		                   namespace="EjTeoriaGen.Infraestructure.EN.Dsm_teoría">
+		    
+		    
+			
+				<class name="Linea_facturaNH" table="Linea_factura"> 
+				  	
+						<id name="Num_linea" column="num_lineaLinea_factura" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Precio" type="double"> 
+						<column name="precio"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+					
+							   <one-to-one name="Reserva" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.ReservaNH" property-ref="Linea_factura" />							
+					 
+						
+			
+		  			
+						<many-to-one name="Factura" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.FacturaNH" >	
+								<column name="FK_idFactura_idFactura"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="Linea_facturaNHReadAllHQL">from Linea_facturaNH</query>
+		</hibernate-mapping>
+	

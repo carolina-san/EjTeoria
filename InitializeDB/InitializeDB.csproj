@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+  <ItemGroup>
+  
+    <ProjectReference Include="..\EjTeoriaGen.ApplicationCore\EjTeoriaGen.ApplicationCore.csproj"/>
+    <ProjectReference Include="..\EjTeoriaGen.Infraestructure\EjTeoriaGen.Infraestructure.csproj"/>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="EjTeoriaGen.Infraestructure"
+		                   namespace="EjTeoriaGen.Infraestructure.EN.Dsm_teoría">
+		    
+		    
+			
+				<class name="FacturaNH" table="Factura"> 
+				  	
+						<id name="Id" column="idFactura" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Es_pagada" type="boolean"> 
+						<column name="es_pagada"  not-null="true"/>
+					</property>
+					<property name="Es_anulada" type="boolean"> 
+						<column name="es_anulada"  not-null="true"/>
+					</property>
+					<property name="Total" type="float"> 
+						<column name="total"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Linea_factura" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idFactura_idFactura"/>
+					      	</key>
+							<one-to-many class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.Linea_facturaNH"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Cliente" class="EjTeoriaGen.Infraestructure.EN.Dsm_teoría.ClienteNH" >	
+								<column name="FK_DNICliente_idCliente"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="FacturaNHReadAllHQL">from FacturaNH</query>
+		</hibernate-mapping>
+	
