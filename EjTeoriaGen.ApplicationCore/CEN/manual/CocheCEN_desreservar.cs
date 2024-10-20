@@ -26,7 +26,7 @@ public void Desreservar (int p_oid)
                 _ICocheRepository.Modificar (en);
         }
         else{
-                throw new Exception ("El coche no está libre");
+                throw new Exception ("El coche no estaba alquilado");
         }
 
         /*PROTECTED REGION END*/

@@ -30,7 +30,7 @@ public IFacturaRepository get_IFacturaRepository ()
         return this._IFacturaRepository;
 }
 
-public int Crear (Nullable<DateTime> p_fecha, bool p_es_pagada, bool p_es_anulada, float p_total, System.Collections.Generic.IList<EjTeoriaGen.ApplicationCore.EN.Dsm_teoría.Linea_facturaEN> p_linea_factura, string p_cliente)
+public int Crear (Nullable<DateTime> p_fecha, bool p_es_pagada, bool p_es_anulada, float p_total, string p_cliente)
 {
         FacturaEN facturaEN = null;
         int oid;
@@ -44,8 +44,6 @@ public int Crear (Nullable<DateTime> p_fecha, bool p_es_pagada, bool p_es_anulad
         facturaEN.Es_anulada = p_es_anulada;
 
         facturaEN.Total = p_total;
-
-        facturaEN.Linea_factura = p_linea_factura;
 
 
         if (p_cliente != null) {

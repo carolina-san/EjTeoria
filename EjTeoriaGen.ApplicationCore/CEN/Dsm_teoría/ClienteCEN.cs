@@ -9,7 +9,6 @@ using EjTeoriaGen.ApplicationCore.Exceptions;
 using EjTeoriaGen.ApplicationCore.EN.Dsm_teoría;
 using EjTeoriaGen.ApplicationCore.IRepository.Dsm_teoría;
 using Newtonsoft.Json;
-using EjTeoriaGen.ApplicationCore.CP.Dsm_teoría;
 
 
 namespace EjTeoriaGen.ApplicationCore.CEN.Dsm_teoría
@@ -111,7 +110,7 @@ public System.Collections.Generic.IList<ClienteEN> DameALL (int first, int size)
         {
             var payload = new Dictionary<string, object>()
             {
-                { "key", "value" } // Add a valid key-value pair
+                { "exampleKey", "exampleValue" }
             };
             string token = Jose.JWT.Encode(payload, Utils.Util.getKey(), Jose.JwsAlgorithm.HS256);
 
@@ -152,10 +151,12 @@ public string CheckToken (string token)
         return result;
 }
 
-        private string ObtenerDNI(string decodedToken)
+        private object ObtenerDNI(string decodedToken)
         {
-            ClienteEN clienteEN = new ClienteEN();
-            return clienteEN.DNI;
+            var tokenData = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(decodedToken);
+            ClienteEN en = new ClienteEN();
+            en.DNI = tokenData.dni;
+            return en.DNI;
         }
     }
 }

@@ -136,13 +136,6 @@ public int Crear (FacturaEN factura)
         try
         {
                 SessionInitializeTransaction ();
-                if (factura.Linea_factura != null) {
-                        foreach (EjTeoriaGen.ApplicationCore.EN.Dsm_teoría.Linea_facturaEN item in factura.Linea_factura) {
-                                item.Factura = factura;
-                                Linea_facturaNH itemNH = new Linea_facturaNH (item);
-                                session.Save (itemNH);
-                        }
-                }
                 if (factura.Cliente != null) {
                         // Argumento OID y no colección.
                         facturaNH

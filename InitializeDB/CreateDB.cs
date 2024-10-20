@@ -27,7 +27,7 @@ public static void Create (string databaseArg, string userArg, string passArg)
         String pass = passArg;
 
         // Conex DB
-        SqlConnection cnn = new SqlConnection (@"Server=(local); database=master; integrated security=yes");
+        SqlConnection cnn = new SqlConnection (@"Server=(local)\sqlexpress; database=master; integrated security=yes");
 
         // Order T-SQL create user
         String createUser = @"IF NOT EXISTS(SELECT name FROM master.dbo.syslogins WHERE name = '" + user + @"')
@@ -110,10 +110,29 @@ public static void InitializeData ()
                 cochecen.Reservar (coche);
                 Console.WriteLine ("Coche reservado");
 
-                cochecen.Reservar (coche);
-                Console.WriteLine ("Coche reservado por segunda vez");
+                //cochecen.Reservar (coche);
+                //Console.WriteLine ("Coche reservado por segunda vez");  funciona porque salta la exception
+
+                cochecen.Desreservar (coche);
+                Console.WriteLine ("Coche desreservado");
+
+                //cochecen.Desreservar(coche);
+                //Console.WriteLine("Coche desreservado por segunda vez"); //funciona porque salta la exception
+
+                int factura = facturacen.Crear (DateTime.Now, false, false, 10, cliente);
+                Console.WriteLine("Factura creada");
+
+                int linea_factura1 = linea_facturacen.Crear (10.83, reserva, factura);
+                int linea_factura2 = linea_facturacen.Crear (34.21, reserva, factura);
+                Console.WriteLine("Lineas de factura creadas");
+
+                facturacen.Anular(factura);
+                Console.WriteLine("Factura anulada");
+                facturacen.Pagar(factura);
+                Console.WriteLine("Factura pagada");
+
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

@@ -17,13 +17,23 @@ public partial class FacturaCEN
 {
 public void Pagar (int p_oid)
 {
-        /*PROTECTED REGION ID(EjTeoriaGen.ApplicationCore.CEN.Dsm_teoría_Factura_pagar) ENABLED START*/
+            /*PROTECTED REGION ID(EjTeoriaGen.ApplicationCore.CEN.Dsm_teoría_Factura_pagar) ENABLED START*/
 
-        // Write here your custom code...
+            // Write here your custom code...
 
-        throw new NotImplementedException ("Method Pagar() not yet implemented.");
+            FacturaEN en = _IFacturaRepository.ReadOIDDefault(p_oid);
 
-        /*PROTECTED REGION END*/
-}
+            if (en.Es_pagada == false)
+            {
+                en.Es_pagada = true;
+                _IFacturaRepository.Modificar(en);
+            }
+            else
+            {
+                throw new Exception("La factura ya está pagada");
+            }
+
+            /*PROTECTED REGION END*/
+        }
 }
 }
